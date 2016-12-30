@@ -298,11 +298,13 @@ public:
           tv.tv_sec = trunc(autorepeat_interval);
           tv.tv_usec = (autorepeat_interval - tv.tv_sec) * 1e6; 
           tv_set = true;
+          ROS_WARN_THROTTLE(10.0, "autorepeat_interval %f %ds %dus", autorepeat_interval, int(tv.tv_sec), int(tv.tv_usec));
           //ROS_INFO("Autorepeat pending... %i %i", tv.tv_sec, tv.tv_usec);
         }
         
         if (!tv_set)
         {
+          ROS_WARN_THROTTLE(10.0, "autorepeat_interval 1second");
           tv.tv_sec = 1;
           tv.tv_usec = 0;
         }
